@@ -103,4 +103,5 @@ int main(int argc, char *argv[]) {
     if(ADMIN == 1) {
         printf("O %s VENCEU!!", (semi_rodada % 2 == 0)? "Jogador 1":"Jogador 2");
     }
+//TESTE DE ALTERAÇÃO
 }
