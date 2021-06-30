@@ -1,78 +1,54 @@
 #include <stdio.h>
 
-int verificar_quarto(int quad);
+
+int verificar_preenchimento(int casas[]) {
+    for(int i = 0; i < 4; i++) {
+        if(casas[i] == '-') {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+
+int verificar_quarto(int quadra);
+
+
 
 int caracteristica_vencedora(int quadra);
 
-int varre_tabuleiro(int *venceu, int *coordenadas, int tabuleiro) {
-    int vitoria = 0;
-    int quarto;
+
+
+int varre_tabuleiro(int *venceu, int *coordenadas, int tabuleiro[][]) {
         //para cada linha
         for(int linha = 0; linha < 4; linha++) {
-            quarto += verificar_quarto(tabuleiro[linha]);
-            int quarto = -1;
-            for (int coluna = 0; coluna < 4; coluna++) {
-                if (tabuleiro[linha][coluna] != -1) {
-                    if (quarto == -1) {
-                       quarto = tabuleiro[linha][coluna];
-                    }
-                    else {
-                        quarto = ~(quarto ^ tabuleiro[linha][coluna]);
-                    }
-                }
-            }
-            if(quarto != 0) {
-                vitoria++;
+            int quadra[] = {tabuleiro[linha][0], tabuleiro[linha][1], tabuleiro[linha][2], tabuleiro[linha][3]};
+            unsigned int quadra_preenchida = verificar_preenchimento(quadra);
+            if(quadra_preenchida) {
+                //AQUI FAZER A VERIFICAÇÃO DE SE A QUADRA É UM QUARTO
             }
         }
         //para cada coluna
         for (int coluna = 0; coluna < 4; coluna++) {
-            int quarto = 0;
-            for (int linha = 0; linha < 4; linha++) {
-                if(tabuleiro[linha][coluna] != -1) {
-                    if (quarto == -1) {
-                       quarto = tabuleiro[linha][coluna];
-                    }
-                    else {
-                        quarto = ~(quarto ^ tabuleiro[linha][coluna]);
-                    }
-                }
-                if(quarto != 0) {
-                vitoria++;
-                }
+            int quadra[] = {[0][coluna], [1][coluna], [2][coluna], [3][coluna]};
+            unsigned int quadra_preenchida = verificar_preenchimento(quadra);
+            if(quadra_preenchida) {
+                //AQUI FAZER A VERIFICAÇÃO DE SE A QUADRA É UM QUARTO]
             }
         }
         //para a diagonal principal
-        int quarto = -1;
-        for(int i = 0; i < 4; i++) {
-            if(tabuleiro[i][i] != -1){
-                if(quarto == -1){
-                    quarto = tabuleiro[i][i];
-                }
-                else{
-                    quarto = ~(quarto ^ tabuleiro[i][i]);
-                }
+        int diagonal_principal[] = {tabuleiro[0][0], tabuleiro[1][1], tabuleiro[2][2], tabuleiro[3][3]};
+            unsigned int diag_p_preechida = verificar_preenchimento(diagonal_principal);
+            if(diag_p_preechida) {
+                //AQUI FAZER A VERIFICAÇÃO DE SE A QUADRA É UM QUARTO
             }
-        }
-        if(quarto != 0) {
-            vitoria++;
-        }
         // para a diagonal secundaria
-        quarto = -1;
-        for(int i = 0; i > -4; i--) {
-            if(quarto == -1) {
-                quarto = tabuleiro[i + 3][-i];
+        int diagonal_secundaria[] = {tabuleiro[3][0], tabuleiro[2][1], tabuleiro[1][2], tabuleiro[0][3]};
+            unsigned int diag_s_preechida = verificar_preenchimento(diagonal_secundaria);
+            if(diag_s_preechida) {
+                //AQUI FAZER A VERIFICAÇÃO DE SE A QUADRA É UM QUARTO
             }
-            else{
-                quarto = ~(quarto ^ tabuleiro[i + 3][-i]);
-            }
-        }
-        if(quarto != 0) {
-            vitoria++;
-        }
-        if(vitoria > 0) {
-            venceu = 1;
-        }
+        return {-1, -1, -1, -1};
 }
 
 
