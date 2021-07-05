@@ -118,7 +118,7 @@ int varre_tabuleiro(int tabuleiro[][4], int coordenadas[], int pecas_vencedoras[
             }
         // para a diagonal secundaria
         int diagonal_secundaria[] = {tabuleiro[3][0], tabuleiro[2][1], tabuleiro[1][2], tabuleiro[0][3]};
-        int coords_secundaria[] = {matriz_coordenadas[3][0], matriz_coordenadas[2][1], matriz_coordenadas[1][2], matriz_coordenadas[0][3]};
+        int coords_secundaria[] = {matriz_coordenadas[0][3], matriz_coordenadas[1][2], matriz_coordenadas[2][1], matriz_coordenadas[3][0]};
             if(verificar_preenchimento(diagonal_secundaria) && verificar_quarto(diagonal_secundaria, 0)) {
                 copiar_array(diagonal_secundaria, pecas_vencedoras, 4);
                 copiar_array(coords_secundaria, coordenadas, 4);
